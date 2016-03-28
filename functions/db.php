@@ -5,39 +5,25 @@ function config(){
 }
 
 function DBConnect () {
- //   $config = config();
+    $config = config();
 
     global $link;
     // Настройки подключения к БД.
-    /*
-    $hostname = $config['db']['hostname'];
-    $username = $config['db']['username'];
-    $password = $config['db']['password'];
-    $dbname = $config['db']['dbname'];
-    */
-
-    $hostname = 'localhost';
-    $username = 'root';
-    $password = '';
-    $dbname = 'php22';
-
-
-    // Языковая настройка.
-    setlocale(LC_ALL, 'ru_RU.UTF-8'); // Устанавливаем нужную локаль (для дат, денег, запятых и пр.)
-    mb_internal_encoding('UTF-8'); // Устанавливаем кодировку строк
+    $hostname = $config['hostname'];
+    $username = $config['username'];
+    $password = $config['password'];
+    $dbname = $config['dbname'];
 
     // Подключение к БД.
     $link = mysqli_connect($hostname, $username, $password, $dbname) or die('No connect with data base');
     mysqli_query($link, 'SET NAMES utf8');
-
+    header('Content-type: text/html; charset=utf-8');
 }
 
 function DBQuery($sql)
 {
     DBConnect();
     global $link;
-    // Запрос.
-   // $query = "SELECT art_id, art_title, art_content, art_add_date, art_author, pers_surname, pers_name FROM articles, persons WHERE pers_id = art_author AND art_state = 'A' ORDER BY art_add_date DESC";
     $result = mysqli_query($link, $sql);
     // mysqli_close($link);
 
@@ -53,6 +39,61 @@ function DBQuery($sql)
         $row = mysqli_fetch_assoc($result);
         $articles[] = $row;
     }
-
     return $articles;
+}
+
+function DBQueryOne($sql)
+{
+    DBConnect();
+    global  $link;
+    $result = mysqli_query($link,$sql);
+
+    if(!$result)
+        die(mysqli_errno($link));
+
+    // Извлечение из БД.
+    $article = mysqli_fetch_assoc($result);
+    $n = mysqli_num_rows($result);
+    if($n == 0){
+        $noInDb_error = "Статья не найдена!";
+    }
+
+    return $article;
+}
+
+function DBQuerySetArticle($sql)
+{
+    DBConnect();
+    global $link;
+    $result = mysqli_query($link, $sql);
+    $n = mysqli_affected_rows($link);
+    if($n === 1)
+        return true;
+    else
+        return false;
+}
+
+function DBQueryEdit($sql)
+{
+    DBConnect();
+    global $link;
+    $result = mysqli_query($link, $sql);
+    $n = mysqli_affected_rows($link);
+    var_dump($result);
+    if($n === 1)
+        return true;
+    else
+        return false;
+}
+
+function DBQueryDelete($sql)
+{
+    DBConnect();
+    global $link;
+    $result = mysqli_query($link, $sql);
+    $n = mysqli_affected_rows($link);
+    if($n === 1)
+        return true;
+    else
+        return false;
 }
