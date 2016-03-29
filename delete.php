@@ -1,12 +1,14 @@
 <?php
 
-include_once __DIR__ . ('/models/news.php');
+include_once __DIR__ . ('/models/New.php');
 
 if($_GET['id'])
     $id = $_GET['id'];
 
-    News_delete($id);
-    $news = News_getAll();
+$model = new News();
+
+$model->New_delete($id);
+$news = $model->News_getAll();
 
 // Вывод в шаблон.
 include('view/index.php');

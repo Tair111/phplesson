@@ -1,6 +1,8 @@
 <?php
 
-include_once __DIR__ . ('/models/news.php');
+include_once __DIR__ . ('/models/New.php');
+
+$model = new News();
 
 // Проверка заполнены ли поля title и content при нажатии "Добавить".
 if(isset($_POST['ok']) and ($_POST['title'] == "" or $_POST['text'] == "")){
@@ -10,9 +12,9 @@ else{
     if(isset($_POST['ok']) and isset($_POST['title']) and isset($_POST['text'])){
         $title = $_POST['title'];
         $text = $_POST['text'];
-        New_setArticle($title, $text);
+        $model->New_setArticle($title, $text);
         $msgOk = "Статья добавлена.";
-        //header('Location: new.php');
+        //header('Location: New.php');
     }
 }
 
