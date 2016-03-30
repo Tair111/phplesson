@@ -10,8 +10,8 @@ if(isset($_POST['ok']) and ($_POST['title'] == "" or $_POST['text'] == "")){
 }
 else{
     if(isset($_POST['ok']) and isset($_POST['title']) and isset($_POST['text'])){
-        $title = $_POST['title'];
-        $text = $_POST['text'];
+        $title = mysqli_real_escape_string($link, $_POST['title']);
+        $text = mysqli_real_escape_string($link, $_POST['text']);
         $model->New_setArticle($title, $text);
         $msgOk = "Статья добавлена.";
         //header('Location: New.php');
@@ -21,15 +21,12 @@ else{
 // Определение переменных для отображения в форме, чтобы сохранялись
 // и не пришлось набирать весь текст снова после ошибки.
 if(isset($_POST['title']))
-    $title = $_POST['title'];
+    $title = mysqli_real_escape_string($link, $_POST['title']);
 else $title = '';
 
 if(isset($_POST['text']))
-    $text = $_POST['text'];
+    $text = mysqli_real_escape_string($link, $_POST['text']);
 else $content = '';
-
-// Кодировка.
-header('Content-type: text/html; charset=utf-8');
 
 // Вывод в шаблон.
 include('view/new.php');

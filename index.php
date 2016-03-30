@@ -1,1 +1,1 @@
-<?phpinclude_once __DIR__ . ('/models/New.php');$model = new News();$news = $model->News_getAll();// Вывод в шаблон.include('view/index.php');
+<?phpinclude_once __DIR__ . ('/models/New.php');include_once __DIR__ . ('/Classes/View.php');$view = new View();$model = new News();$view->news = $model->News_getAll();// Вывод в шаблон.$html = $view->display('index.php');echo $html;

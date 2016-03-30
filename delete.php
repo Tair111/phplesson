@@ -1,6 +1,9 @@
 <?php
 
 include_once __DIR__ . ('/models/New.php');
+include_once __DIR__ . ('/Classes/View.php');
+
+$view = new View();
 
 if($_GET['id'])
     $id = $_GET['id'];
@@ -8,7 +11,9 @@ if($_GET['id'])
 $model = new News();
 
 $model->New_delete($id);
-$news = $model->News_getAll();
+$view->news = $model->News_getAll();
+$view->id = $_GET['id'];
 
 // Вывод в шаблон.
-include('view/index.php');
+$html = $view->display('index.php');
+echo $html;

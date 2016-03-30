@@ -1,7 +1,6 @@
 <?php
-require_once __DIR__ . '/../functions/DBWork.php';
 
-abstract class AbstractArticle extends DBWork
+abstract class AbstractArticle
 {
     abstract public function News_getAll();
     abstract public function News_OneArticle($id);

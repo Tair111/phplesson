@@ -45,20 +45,8 @@ class DBWork {
 
     public function DBQueryOne($sql)
     {
-        global  $link;
-        $result = mysqli_query($link,$sql);
-
-        if(!$result)
-            die(mysqli_errno($link));
-
-        // Извлечение из БД.
-        $article = mysqli_fetch_assoc($result);
-        $n = mysqli_num_rows($result);
-        if($n == 0){
-            $noInDb_error = "Статья не найдена!";
-        }
-
-        return $article;
+        $rezult = $this->DBQuery($sql);
+        return $rezult[0];
     }
 
        public function DBQueryExecut($sql)
