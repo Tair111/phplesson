@@ -67,7 +67,7 @@ class NewsController
                 $text = $_POST['text'];
                 $model->New_setArticle($title, $text);
                 $msgOk = "Статья добавлена.";
-                //header('Location: New.php');
+                //header('Location: News.php');
             }
         }
 
