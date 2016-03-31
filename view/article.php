@@ -8,10 +8,10 @@
 <body>
 <h1>PHP. Уровень 2</h1>
 <br/>
-<a href="index.php">Главная</a> |
-<a href="edit.php?id=<?=$id?>">Редактировать статью</a> |
-<a href="new.php">Добавить статью</a> |
-<a href="delete.php?id=<?=$id?>">Удалить статью</a>
+<a href="index.php?r=news/all">Главная</a> |
+<a href="index.php?r=news/edit&id=<?=$id?>">Редактировать статью</a> |
+<a href="index.php?r=news/new">Добавить статью</a> |
+<a href="index.php?r=news/delete&id=<?=$id?>">Удалить статью</a>
 <hr/>
 <h1><?=$article['title']?></h1>
 <br/>

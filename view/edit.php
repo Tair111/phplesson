@@ -8,8 +8,8 @@
 <body>
 <h1>PHP. Уровень 2</h1>
 <br/>
-<a href="index.php">Главная</a> |
-<a href="delete.php?id=<?=$id?>">Удалить статью</a>
+<a href="index.php?r=news/all">Главная</a> |
+<a href="index.php?r=news/delete?id=<?=$id?>">Удалить статью</a>
 <hr/>
 <h1>Редактирование статьи</h1>
 <? if (isset($msgOk)){?>

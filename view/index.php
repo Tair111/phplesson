@@ -8,12 +8,12 @@
 <body>
 <h1>PHP. Уровень 2</h1>
 <br/>
-<a href="index.php">Главная</a> |
-<a href="new.php">Добавить статью</a> |
+<a href="index.php?r=news/all">Главная</a> |
+<a href="index.php?r=news/new">Добавить статью</a> |
     <?php foreach ($news as $article): ?>
     <article>
         <h3 class="artitle">
-            <a href="article.php?id=<?=$article['id']?>">
+            <a href="index.php?r=news/one&id=<?=$article['id']?>">
                 <?=$article['title']?>
             </a>
         </h3>

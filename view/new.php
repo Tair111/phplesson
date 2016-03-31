@@ -8,7 +8,7 @@
 <body>
 <h1>PHP. Уровень 2</h1>
 <br/>
-<a href="index.php">Главная</a> |
+<a href="index.php?r=news/all">Главная</a> |
 <a>Добавить статью</a>
 <hr/>
 <h1>Новая статья</h1>
